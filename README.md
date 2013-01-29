@@ -1,5 +1,5 @@
 # Dust Compiler
-This as a basic dust compiler, there are many out there. This one adds support
+This is a basic dust compiler, there are many out there. This one adds support
 for OS X 10.8.x Notification Center to bring more visiblity to compile errors
 when developing while the terminal window that it is running in is not visible.
 
