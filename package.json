@@ -1,15 +1,28 @@
 {
     "name": "dust-compiler",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Dust.js template watcher/compiler with support for OS X Notification Center",
     "private": true,
     "author": {
         "name": "James Young",
         "email": "james.young@turner.com"
     },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/jamsyoung/dust-compiler"
+    },
     "dependencies": {
         "dustjs-linkedin": "1.1.1",
         "watch": "0.5.1",
         "terminal-notifier": "0.1.0"
-    }
+    },
+    "engines": {
+        "node": ">=0.8.18"
+    },
+    "license": "MIT",
+    "keywords": [
+        "dustjs",
+        "dust.js",
+        "dust"
+    ]
 }
