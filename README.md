@@ -5,27 +5,22 @@ when developing while the terminal window that it is running in is not visible.
 
 
 ## Install
-You will likely integrate this into the project you are working on.  Place the
-`package.json` in the root of your project folder and run `npm install`.  This
-will install the other node packages needed.
+You will likely integrate this into the project you are working on.  Add this
+as a devDependency in your package.json and:
 
     $ npm install
 
-Next put `dust-compiler.js` anywhere you like in your project folder.  Edit the
-file and set the `source` and `destination` paths on where it should watch for
-dust files (source), and where it should write compiled js files (destination).
+Next add a symlink to `node_modules/.bin/dust-compiler` anywhere you like in
+your project folder.  Edit the file and set the `source` and `destination`
+paths on where it should watch for dust files (source), and where it should
+write compiled js files (destination).
 
-
-## Changing default Paths
-This defaults to look for dust templates in a dust folder and puts compiled
-templtes into a js folder.  If you want to change these, edit the `dust-compiler.js`
-file.
 
 
 ## Turning it on
 To fire it up just do this:
 
-    $ node dust-compiler.js
+    $ ./dust-compiler
 
 Notifications will look like this:
 
@@ -36,3 +31,11 @@ Success!
 or Failure :(
 
 ![](http://grab.by/jrh4)
+
+
+## Bootstrapping
+In cases where you are creating a new project and have lots of existing dust
+templates, you will want to bootstrap the files.  To save time you can run
+the following to automatically build everything in the source folder.
+
+    $ ./dust-compiler --bootstrap

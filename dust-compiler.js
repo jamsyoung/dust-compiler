@@ -9,34 +9,22 @@
  * for OS X 10.8.x Notification Center to bring more visiblity to compile errors
  * when developing while the terminal window that it is running in is not visible.
  *
- * Usage from terminal:
+ * Usage from terminal for compiling when files change:
  *     ./dust-compiler
+ *
+ * If you need to compile lots of dust templates for the first time and don't
+ * want to start up the compiler then go touch every single file, do this:
+ *     ./dust-compiler --bootstrap
  */
 
 
-var source = "src/main/dust-templates/",
-    destination = "src/main/js/lib/dust-templates",
+var source = "src/main/dust-templates/",             // must end in slash
+    destination = "src/main/js/lib/dust-templates/", // must end in slash
     fs = require('fs'),
     dust = require('dustjs-linkedin'),
     watch = require('watch'),
     notifier = require('terminal-notifier'),
     wrench = require('wrench');
-
-
-
-
-if (process.argv[2] === '--bootstrap') {
-    wrench.readdirRecursive(source, function (error, fileList) {
-        'use strict';
-
-        if (fileList) {
-            for (var i = 0; i < fileList.length; i++) {
-                console.log(fileList[i]);
-            }
-        }
-    });
-    process.exit(0);
-}
 
 
 function log(message) {
@@ -87,11 +75,23 @@ function compile(path, curr, prev) {
 }
 
 
-watch.createMonitor(source, function (monitor) {
-    'use strict';
+if (process.argv[2] === '--bootstrap') {
+    wrench.readdirRecursive(source, function (error, fileList) {
+        'use strict';
 
-    log('Watching ' + source);
-    monitor.files['*.dust', '*/*'];
-    monitor.on('created', compile);
-    monitor.on('changed', compile);
-});
+        if (fileList) {
+            for (var i = 0; i < fileList.length; i++) {
+                compile(source + fileList[i]);
+            }
+        }
+    });
+} else {
+    watch.createMonitor(source, function (monitor) {
+        'use strict';
+
+        log('Watching ' + source);
+        monitor.files['*.dust', '*/*'];
+        monitor.on('created', compile);
+        monitor.on('changed', compile);
+    });
+}
