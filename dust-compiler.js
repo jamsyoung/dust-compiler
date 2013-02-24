@@ -19,7 +19,24 @@ var source = "src/main/dust-templates/",
     fs = require('fs'),
     dust = require('dustjs-linkedin'),
     watch = require('watch'),
-    notifier = require('terminal-notifier');
+    notifier = require('terminal-notifier'),
+    wrench = require('wrench');
+
+
+
+
+if (process.argv[2] === '--bootstrap') {
+    wrench.readdirRecursive(source, function (error, fileList) {
+        'use strict';
+
+        if (fileList) {
+            for (var i = 0; i < fileList.length; i++) {
+                console.log(fileList[i]);
+            }
+        }
+    });
+    process.exit(0);
+}
 
 
 function log(message) {
