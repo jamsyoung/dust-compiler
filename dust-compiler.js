@@ -2,20 +2,20 @@
 /*jslint node: true */
 
 /*
- * dust-compiler.js
- * james.young@turner.com
+ * dust-compiler
+ * jmeyoung@gmail.com
  *
  * This is a basic dust compiler, there are many out there. This one adds support
  * for OS X 10.8.x Notification Center to bring more visiblity to compile errors
  * when developing while the terminal window that it is running in is not visible.
  *
  * Usage from terminal:
- *     node dust-compiler.js
+ *     ./dust-compiler
  */
 
 
-var source = "./dust/",
-    destination = "./js/",
+var source = "src/main/dust-templates/",
+    destination = "src/main/js/lib/dust-templates",
     fs = require('fs'),
     dust = require('dustjs-linkedin'),
     watch = require('watch'),
@@ -73,7 +73,7 @@ function compile(path, curr, prev) {
 watch.createMonitor(source, function (monitor) {
     'use strict';
 
-    log('Watching' + source);
+    log('Watching ' + source);
     monitor.files['*.dust', '*/*'];
     monitor.on('created', compile);
     monitor.on('changed', compile);
