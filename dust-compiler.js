@@ -14,8 +14,8 @@
  */
 
 
-var source = "./path/to/source/dust/files/",
-    destination = "./path/to/destination/dust/files/",
+var source = "./dust/",
+    destination = "./js/",
     fs = require('fs'),
     dust = require('dustjs-linkedin'),
     watch = require('watch'),

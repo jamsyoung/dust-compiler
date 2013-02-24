@@ -16,6 +16,12 @@ file and set the `source` and `destination` paths on where it should watch for
 dust files (source), and where it should write compiled js files (destination).
 
 
+## Changing default Paths
+This defaults to look for dust templates in a dust folder and puts compiled
+templtes into a js folder.  If you want to change these, edit the `dust-compiler.js`
+file.
+
+
 ## Turning it on
 To fire it up just do this:
 
