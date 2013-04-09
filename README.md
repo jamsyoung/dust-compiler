@@ -39,3 +39,9 @@ templates, you will want to bootstrap the files.  To save time you can run
 the following to automatically build everything in the source folder.
 
     $ ./dust-compiler --bootstrap
+
+
+## Disabling notifications
+Don't like the notifications?  Prefer to watch the terminal window instead?
+
+    $ ./dust-compiler --no-notify

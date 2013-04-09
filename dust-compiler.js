@@ -48,7 +48,8 @@ var source = "src/main/dust-templates/",             // must end in slash
         default:
             return console.log;
         }
-    }());
+    }()),
+    bootstrap = false;
 
 function compile(path, curr, prev) {
     'use strict';
@@ -84,7 +85,23 @@ function compile(path, curr, prev) {
 }
 
 
-if (process.argv[2] === '--bootstrap') {
+process.argv.forEach(function (arg, idx) {
+    "use strict";
+    if (idx < 2) { return; }
+
+    switch (arg) {
+    case "--bootstrap":
+        bootstrap = true;
+        break;
+    case "--no-notify":
+        log = console.log;
+        break;
+    default:
+        log("Ignoring unrecognized option: " + arg);
+    }
+});
+
+if (bootstrap) {
     wrench.readdirRecursive(source, function (error, fileList) {
         'use strict';
 
