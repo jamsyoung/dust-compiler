@@ -23,23 +23,32 @@ var source = "src/main/dust-templates/",             // must end in slash
     fs = require('fs'),
     dust = require('dustjs-linkedin'),
     watch = require('watch'),
-    notifier = require('terminal-notifier'),
-    wrench = require('wrench');
+    wrench = require('wrench'),
+    log = (function () {
+        "use strict";
+        var notifier;
 
-
-function log(message) {
-    'use strict';
-
-    if (process.platform === 'darwin') {
-        notifier(message, {
-            title: 'Dust Compiler',
-            activate: 'com.apple.Terminal'
-        });
-    }
-
-    console.log(message);
-}
-
+        // Determine the most-appropriate notifier for the platform.
+        switch (process.platform) {
+        case "darwin":
+            notifier = require("terminal-notifier");
+            return function (message) {
+                notifier(message, {
+                    title: 'Dust Compiler',
+                    activate: 'com.apple.Terminal'
+                });
+                console.log(message);
+            };
+        case "linux":
+            notifier = require("notify-send");
+            return function (message) {
+                notifier.notify("Dust Compiler", message);
+                console.log(message);
+            };
+        default:
+            return console.log;
+        }
+    }());
 
 function compile(path, curr, prev) {
     'use strict';
