@@ -15,6 +15,7 @@
     },
     "dependencies": {
         "dustjs-linkedin": "1.2.1",
+        "notify-send": "0.1.2",
         "watch": "0.5.1",
         "terminal-notifier": "0.1.0",
         "wrench": "1.4.4"
