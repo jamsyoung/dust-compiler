@@ -106,9 +106,18 @@ if (bootstrap) {
         'use strict';
 
         if (fileList) {
-            for (var i = 0; i < fileList.length; i++) {
-                compile(source + fileList[i]);
-            }
+            fileList.forEach(function (filename) {
+                var path = source + filename;
+                fs.stat(path, function (err, stats) {
+                    if (err) {
+                        log("fs.stat error: " + err);
+                        throw err;
+                    }
+                    if (!stats.isDirectory()) {
+                        compile(path);
+                    }
+                });
+            });
         }
     });
 } else {
