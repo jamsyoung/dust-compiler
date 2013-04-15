@@ -21,6 +21,8 @@
 var source = "src/main/dust-templates/",             // must end in slash
     destination = "src/main/js/lib/dust-templates/", // must end in slash
     fs = require('fs'),
+    path = require('path'),
+    mkdirp = require('mkdirp'),
     dust = require('dustjs-linkedin'),
     watch = require('watch'),
     wrench = require('wrench'),
@@ -51,23 +53,28 @@ var source = "src/main/dust-templates/",             // must end in slash
     }()),
     bootstrap = false;
 
-function compile(path, curr, prev) {
+function compile(src, curr, prev) {
     'use strict';
 
-    var filename = path.split('/').reverse()[0].replace('.dust', ''),
-        filepath = destination + filename + '.js',
+    var filename,
+        filepath,
         error = false,
         data;
 
-    if (path.indexOf(".dust", path.length - 5) !== -1) {
-        fs.stat(path, function (err, stat) {
+    if (path.extname(src) === ".dust") {
+        fs.stat(src, function (err, stat) {
             if (err) {
                 log("fs.stat error");
                 throw err;
             }
 
             if (!stat.isDirectory()) {
-                fs.readFile(path, function (err, data) {
+
+                filename = src.substring(source.length);
+                filepath = destination +
+                    filename.substring(0, filename.length - 5) + ".js";
+
+                fs.readFile(src, function (err, data) {
                     if (err) {
                         log('fs.readFile error');
                         throw err;
@@ -81,12 +88,19 @@ function compile(path, curr, prev) {
                     }
 
                     if (!error) {
-                        fs.writeFile(filepath, data, function (err) {
+                        mkdirp.mkdirp(path.dirname(filepath), function (err) {
                             if (err) {
-                                log('fs.writeFile error: ' + err);
+                                log("mkdirp.mkdirp error: " + err);
                                 throw err;
                             }
-                            log('Saved ' + filepath);
+
+                            fs.writeFile(filepath, data, function (err) {
+                                if (err) {
+                                    log('fs.writeFile error: ' + err);
+                                    throw err;
+                                }
+                                log('Saved ' + filepath);
+                            });
                         });
                     }
                 });
