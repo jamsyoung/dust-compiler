@@ -59,29 +59,40 @@ function compile(path, curr, prev) {
         error = false,
         data;
 
-    fs.readFile(path, function (err, data) {
-        if (err) {
-            log('fs.readFile error');
-            throw err;
-        }
+    if (path.indexOf(".dust", path.length - 5) !== -1) {
+        fs.stat(path, function (err, stat) {
+            if (err) {
+                log("fs.stat error");
+                throw err;
+            }
 
-        try {
-            data = dust.compile(data.toString(), filename);
-        } catch (e) {
-            error = true;
-            log(e);
-        }
+            if (!stat.isDirectory()) {
+                fs.readFile(path, function (err, data) {
+                    if (err) {
+                        log('fs.readFile error');
+                        throw err;
+                    }
 
-        if (!error) {
-            fs.writeFile(filepath, data, function (err) {
-                if (err) {
-                    log('fs.writeFile error: ' + err);
-                    throw err;
-                }
-                log('Saved ' + filepath);
-            });
-        }
-    });
+                    try {
+                        data = dust.compile(data.toString(), filename);
+                    } catch (e) {
+                        error = true;
+                        log(e);
+                    }
+
+                    if (!error) {
+                        fs.writeFile(filepath, data, function (err) {
+                            if (err) {
+                                log('fs.writeFile error: ' + err);
+                                throw err;
+                            }
+                            log('Saved ' + filepath);
+                        });
+                    }
+                });
+            }
+        });
+    }
 }
 
 
@@ -107,16 +118,7 @@ if (bootstrap) {
 
         if (fileList) {
             fileList.forEach(function (filename) {
-                var path = source + filename;
-                fs.stat(path, function (err, stats) {
-                    if (err) {
-                        log("fs.stat error: " + err);
-                        throw err;
-                    }
-                    if (!stats.isDirectory()) {
-                        compile(path);
-                    }
-                });
+                compile(source + filename);
             });
         }
     });
@@ -125,7 +127,6 @@ if (bootstrap) {
         'use strict';
 
         log('Watching ' + source);
-        monitor.files['*.dust', '*/*'];
         monitor.on('created', compile);
         monitor.on('changed', compile);
     });
