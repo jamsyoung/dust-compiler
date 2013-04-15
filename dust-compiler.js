@@ -61,6 +61,8 @@ function compile(src, curr, prev) {
         error = false,
         data;
 
+    src = path.normalize(src);
+
     if (path.extname(src) === ".dust") {
         fs.stat(src, function (err, stat) {
             if (err) {
@@ -125,6 +127,9 @@ process.argv.forEach(function (arg, idx) {
         log("Ignoring unrecognized option: " + arg);
     }
 });
+
+source = path.normalize(source);
+destination = path.normalize(destination);
 
 if (bootstrap) {
     wrench.readdirRecursive(source, function (error, fileList) {
