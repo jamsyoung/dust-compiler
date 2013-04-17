@@ -21,6 +21,8 @@
 var source = "src/main/dust-templates/",             // must end in slash
     destination = "src/main/js/lib/dust-templates/", // must end in slash
     fs = require('fs'),
+    path = require('path'),
+    mkdirp = require('mkdirp'),
     dust = require('dustjs-linkedin'),
     watch = require('watch'),
     wrench = require('wrench'),
@@ -51,37 +53,62 @@ var source = "src/main/dust-templates/",             // must end in slash
     }()),
     bootstrap = false;
 
-function compile(path, curr, prev) {
+function compile(src, curr, prev) {
     'use strict';
 
-    var filename = path.split('/').reverse()[0].replace('.dust', ''),
-        filepath = destination + filename + '.js',
+    var filename,
+        filepath,
         error = false,
         data;
 
-    fs.readFile(path, function (err, data) {
-        if (err) {
-            log('fs.readFile error');
-            throw err;
-        }
+    src = path.normalize(src);
 
-        try {
-            data = dust.compile(data.toString(), filename);
-        } catch (e) {
-            error = true;
-            log(e);
-        }
+    if (path.extname(src) === ".dust") {
+        fs.stat(src, function (err, stat) {
+            if (err) {
+                log("fs.stat error");
+                throw err;
+            }
 
-        if (!error) {
-            fs.writeFile(filepath, data, function (err) {
-                if (err) {
-                    log('fs.writeFile error: ' + err);
-                    throw err;
-                }
-                log('Saved ' + filepath);
-            });
-        }
-    });
+            if (!stat.isDirectory()) {
+
+                filename = src.substring(source.length);
+                filepath = destination +
+                    filename.substring(0, filename.length - 5) + ".js";
+
+                fs.readFile(src, function (err, data) {
+                    if (err) {
+                        log('fs.readFile error');
+                        throw err;
+                    }
+
+                    try {
+                        data = dust.compile(data.toString(), filename);
+                    } catch (e) {
+                        error = true;
+                        log(e);
+                    }
+
+                    if (!error) {
+                        mkdirp.mkdirp(path.dirname(filepath), function (err) {
+                            if (err) {
+                                log("mkdirp.mkdirp error: " + err);
+                                throw err;
+                            }
+
+                            fs.writeFile(filepath, data, function (err) {
+                                if (err) {
+                                    log('fs.writeFile error: ' + err);
+                                    throw err;
+                                }
+                                log('Saved ' + filepath);
+                            });
+                        });
+                    }
+                });
+            }
+        });
+    }
 }
 
 
@@ -101,14 +128,17 @@ process.argv.forEach(function (arg, idx) {
     }
 });
 
+source = path.normalize(source);
+destination = path.normalize(destination);
+
 if (bootstrap) {
     wrench.readdirRecursive(source, function (error, fileList) {
         'use strict';
 
         if (fileList) {
-            for (var i = 0; i < fileList.length; i++) {
-                compile(source + fileList[i]);
-            }
+            fileList.forEach(function (filename) {
+                compile(source + filename);
+            });
         }
     });
 } else {
@@ -116,7 +146,6 @@ if (bootstrap) {
         'use strict';
 
         log('Watching ' + source);
-        monitor.files['*.dust', '*/*'];
         monitor.on('created', compile);
         monitor.on('changed', compile);
     });
