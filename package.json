@@ -16,6 +16,8 @@
         "colors": "0.6.0-1",
         "dustjs-linkedin": "1.2.1",
         "optimist": "0.3.5",
+        "notify-send": "0.1.2",
+        "watch": "0.5.1",
         "terminal-notifier": "0.1.0",
         "watch": "0.5.1",
         "wrench": "1.4.4"

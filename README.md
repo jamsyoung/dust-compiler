@@ -1,7 +1,8 @@
 # Dust Compiler
 This is a basic dust compiler, there are many out there. This one adds support
-for OS X 10.8.x Notification Center to bring more visiblity to compile errors
-when developing while the terminal window that it is running in is not visible.
+for the OS X 10.8.x Notification Center and notifications on modern Linux
+desktops to bring more visiblity to compile errors when developing while the
+terminal window that it is running in is not visible.
 
 
 ## Install
@@ -15,6 +16,11 @@ your project folder.  Edit the file and set the `source` and `destination`
 paths on where it should watch for dust files (source), and where it should
 write compiled js files (destination).
 
+
+### Enabling notifications in Linux
+Many Linux distributions ship with the `notify-send` tool already installed.
+If not, you will need to install the "libnotify-bin" (Ubuntu) or "libnotify"
+(RedHat / Fedora) packages.
 
 
 ## Turning it on
@@ -41,6 +47,10 @@ the following to automatically build everything in the source folder.
     $ ./dust-compiler --bootstrap
 
 
+## Disabling notifications
+Don't like the notifications?  Prefer to watch the terminal window instead?
+
+    $ ./dust-compiler --no-notify
 
 ## License
 
@@ -65,4 +75,3 @@ the following to automatically build everything in the source folder.
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
     THE SOFTWARE.
-    
