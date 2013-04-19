@@ -12,10 +12,6 @@
         "dust-compiler": "./dust-compiler.js"
     },
     "main": "dust-compiler.js",
-    "scripts": {
-        "test": "make test",
-        "test-fun": "make test-fun"
-    },
     "dependencies": {
         "colors": "0.6.0-1",
         "dustjs-linkedin": "1.2.3",
@@ -25,10 +21,6 @@
         "terminal-notifier": "0.1.0",
         "watch": "0.7.0",
         "wrench": "1.4.4"
-    },
-    "devDependencies": {
-        "chai": "1.5.0",
-        "mocha": "1.9.0"
     },
     "engines": {
         "node": ">=0.8.18"
