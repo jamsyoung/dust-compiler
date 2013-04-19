@@ -10,7 +10,7 @@ var chai = require('chai'),
 
 suite('dust-compiler-tests', function () {
     test('test something', function () {
-        assert.strictEqual(false, 'not true');
+        assert.strictEqual(false, true);
     });
 
 });

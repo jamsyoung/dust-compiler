@@ -8,7 +8,6 @@ reporter = spec
 
 # set target specific variables
 test-fun: reporter = nyan
-test-report: reporter = xunit-file
 
 
 # define targets
@@ -16,11 +15,11 @@ test-report: reporter = xunit-file
 
 
 test:
-    @./node_modules/.bin/mocha -u tdd --reporter $(reporter)
+	@./node_modules/.bin/mocha -u tdd --reporter $(reporter)
 
 
 test-fun: test
 
 
 test-watch:
-    @./node_modules/.bin/mocha -u tdd --reporter $(reporter) --watch
+	@./node_modules/.bin/mocha -u tdd --reporter $(reporter) --watch
