@@ -6,18 +6,18 @@
 var source = 'change-me/',      // must end in slash
     destination = 'change-me/', // must end in slash
     fs = require('fs'),
+    log,
     path = require('path'),
+    mkdirp = require('mkdirp'),
     dust = require('dustjs-linkedin'),
     watch = require('watch'),
     wrench = require('wrench'),
-    mkdirp = require('mkdirp'),
     bootstrap = false;
 
 
-function log() {
+log = (function () {
     var notifier;
 
-    // Determine the most-appropriate notifier for the platform.
     switch (process.platform) {
     case 'darwin':
         notifier = require('terminal-notifier');
@@ -39,7 +39,8 @@ function log() {
     default:
         return console.log;
     }
-}
+}());
+
 
 
 function compile(src, curr, prev) {
@@ -105,16 +106,20 @@ process.argv.forEach(function (arg, idx) {
     case '--bootstrap':
         bootstrap = true;
         break;
+
     case '--no-notify':
         log = console.log;
         break;
+
     default:
         log('Ignoring unrecognized option: ' + arg);
     }
 });
 
+
 source = path.normalize(source);
 destination = path.normalize(destination);
+
 
 if (bootstrap) {
     wrench.readdirRecursive(source, function (error, fileList) {
