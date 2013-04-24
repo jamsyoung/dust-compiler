@@ -12,9 +12,7 @@ as a devDependency in your package.json and:
     $ npm install
 
 Next add a symlink to `node_modules/.bin/dust-compiler` anywhere you like in
-your project folder.  Edit the file and set the `source` and `destination`
-paths on where it should watch for dust files (source), and where it should
-write compiled js files (destination).
+your project folder.
 
 
 ### Enabling notifications in Linux
@@ -26,7 +24,7 @@ If not, you will need to install the "libnotify-bin" (Ubuntu) or "libnotify"
 ## Turning it on
 To fire it up just do this:
 
-    $ ./dust-compiler
+    $ ./dust-compiler -s source_path -d destination_path
 
 Notifications will look like this:
 
@@ -44,10 +42,27 @@ In cases where you are creating a new project and have lots of existing dust
 templates, you will want to bootstrap the files.  To save time you can run
 the following to automatically build everything in the source folder.
 
-    $ ./dust-compiler --bootstrap
+    $ ./dust-compiler -s source_path -d destination_path --bootstrap
 
 
 ## Disabling notifications
 Don't like the notifications?  Prefer to watch the terminal window instead?
 
-    $ ./dust-compiler --no-notify
+    $ ./dust-compiler -s source_path -d destination_path --nonotify
+
+
+## Include path in compiled template name
+This may not be of value to everyone, but it is to me.  In some conditions you
+may need the name of the compiled template that is registered in the Dust.js
+cache to include the path.  Using the same templates on server side and client
+side may require this.  I added a switch for that.
+
+    $ ./dust-compiler -s source_path -d destination_path --includepath
+
+
+## Overloading arguments
+You can load up your command line with just about everything.
+
+    $ ./dust-compiler -s source_path -d destination_path --bootstrap --includepath --nonotify
+
+

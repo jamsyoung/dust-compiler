@@ -9,9 +9,28 @@
 
 - added `optimist` support for handling command line arguments
 
-- various code refactorings
+- added `colors` support for fancy command line colors when output is written
+  to the console
 
-- added support for recursing directories
+- Issue #4 - added support for recursing directories
+
+- Issue #2 - added `-s|--source` argument for passing in the source directory
+
+- Issue #2 - added `-d|--destination` argument for passing in the destination
+  directory
+
+- Issue #8 - added `--includepath` argument to include the path in the compiled
+  template as the name
+
+- changed `--no-notify` to `--nonotify`
+
+- improved output to be more verbose
+
+- modified `--bootstrap` to watch after it bootstraps, so no need to re-run the
+  compiler after a bootstrap
+
+- Issue #3 - Now traps when source or destination path does not exist
+
 
 
 ## 0.0.5
@@ -22,6 +41,7 @@
   notifications
 
 - `--bootstrap` option skips directories (vs. crashing)
+
 
 
 ## 0.0.4
