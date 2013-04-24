@@ -26,31 +26,35 @@ var fs = require('fs'),
     destination = argv.d.match('/$') ? path.normalize(argv.d) : path.normalize(argv.d + '/'); // must end in slash
 
 
-log = (function () {
-    var notifier;
+if (argv.nonotify) {
+    log = console.log;
+} else {
+    log = (function () {
+        var notifier;
 
-    switch (process.platform) {
-    case 'darwin':
-        notifier = require('terminal-notifier');
-        return function (message) {
-            notifier(message.stripColors, {
-                title: 'Dust Compiler',
-                activate: 'com.apple.Terminal'
-            });
-            console.log(message);
-        };
+        switch (process.platform) {
+        case 'darwin':
+            notifier = require('terminal-notifier');
+            return function (message) {
+                notifier(message.stripColors, {
+                    title: 'Dust Compiler',
+                    activate: 'com.apple.Terminal'
+                });
+                console.log(message);
+            };
 
-    case 'linux':
-        notifier = require('notify-send');
-        return function (message) {
-            notifier.notify('Dust Compiler', message.stripColors);
-            console.log(message);
-        };
+        case 'linux':
+            notifier = require('notify-send');
+            return function (message) {
+                notifier.notify('Dust Compiler', message.stripColors);
+                console.log(message);
+            };
 
-    default:
-        return console.log;
-    }
-}());
+        default:
+            return console.log;
+        }
+    }());
+}
 
 
 function compile(src, curr, prev) {
@@ -110,10 +114,6 @@ function compile(src, curr, prev) {
     }
 }
 
-
-if (argv.nonotify) {
-    log = console.log;
-}
 
 
 if (argv.bootstrap) {
