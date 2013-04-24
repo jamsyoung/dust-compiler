@@ -62,6 +62,7 @@ function compile(src, curr, prev) {
         error = false,
         filename,
         filepath,
+        basename,
         compileFilename;
 
     src = path.normalize(src);
@@ -76,8 +77,9 @@ function compile(src, curr, prev) {
             if (!stat.isDirectory()) {
 
                 filename = src.substring(source.length);
-                compileFilename = argv.includepath ? destination + filename : filename;
-                filepath = destination + filename.substring(0, filename.length - 5) + '.js';
+                basename = filename.substring(0, filename.length - 5);
+                compileFilename = argv.includepath ? destination + basename : basename;
+                filepath = destination + basename + '.js';
 
                 fs.readFile(src, function (err, data) {
                     if (err) {
