@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.7
+- modified to not include the .dust extension in the registered name of the
+  compiled dust template ([CRHain88][0])
+
 ## 0.0.6
 - updated `watch` to 0.7.0
 
@@ -46,3 +50,8 @@
 
 ## 0.0.4
 - initial published version
+
+
+
+[0]: https://github.com/CRHain88
+
