@@ -77,9 +77,9 @@ function compile(src, curr, prev) {
             if (!stat.isDirectory()) {
 
                 filename = src.substring(source.length);
+                filepath = destination + filename;
                 basename = filename.substring(0, filename.length - 5);
-                compileFilename = argv.includepath ? destination + basename : basename;
-                filepath = destination + basename + '.js';
+                compileFilename = argv.includepath ? source + basename : basename;
 
                 fs.readFile(src, function (err, data) {
                     if (err) {
@@ -106,7 +106,7 @@ function compile(src, curr, prev) {
                                     log('[ERROR]'.red + ' fs.writeFile: ' + err);
                                     throw err;
                                 }
-                                log('Compiled '.green + filepath + ' as '.green + compileFilename);
+                                log('Compiled '.green + source + filename + ' as '.green + compileFilename);
                             });
                         });
                     }
