@@ -22,8 +22,8 @@ var fs = require('fs'),
     colors = require('colors'),
     mkdirp = require('mkdirp'),
     wrench = require('wrench'),
-    source = argv.s.match('/$') ? path.normalize(argv.s) : path.normalize(argv.s + '/'),      // must end in slash
-    destination = argv.d.match('/$') ? path.normalize(argv.d) : path.normalize(argv.d + '/'); // must end in slash
+    sourcePath = argv.s.match('/$') ? path.normalize(argv.s) : path.normalize(argv.s + '/'),      // must end in slash
+    destinationPath = argv.d.match('/$') ? path.normalize(argv.d) : path.normalize(argv.d + '/'); // must end in slash
 
 
 if (argv.nonotify) {
@@ -57,56 +57,57 @@ if (argv.nonotify) {
 }
 
 
-function compile(src, curr, prev) {
+function compile(source, currentStat, previousStat) {
     var data,
-        error = false,
+        errorFlag = false,
         filename,
         basename,
         filepath,
         compileFilename;
 
-    src = path.normalize(src);
+    source = path.normalize(source);
 
-    if (path.extname(src) === '.dust') {
-        fs.stat(src, function (err, stat) {
-            if (err) {
-                log('[ERROR]'.red + ' fs.stat');
-                throw err;
+    if (path.extname(source) === '.dust') {
+        fs.stat(source, function (error, stat) {
+            if (error) {
+                log('ERROR: '.red + 'fs.stat: ' + error.message);
+                throw error;
             }
 
             if (!stat.isDirectory()) {
 
-                filename = src.substring(source.length);
+                filename = source.substring(sourcePath.length);
                 basename = filename.substring(0, filename.length - 5);
-                filepath = destination + basename + '.js';
-                compileFilename = argv.includepath ? source + basename : basename;
+                filepath = destinationPath + basename + '.js';
+                compileFilename = argv.includepath ? sourcePath + basename : basename;
 
-                fs.readFile(src, function (err, data) {
-                    if (err) {
-                        log('[ERROR]'.red + ' fs.readFile');
-                        throw err;
+                fs.readFile(source, function (error, data) {
+                    if (error) {
+                        log('ERROR: '.red + 'fs.readFile: ' + error.message);
+                        throw error;
                     }
 
                     try {
                         data = dust.compile(data.toString(), compileFilename);
-                    } catch (e) {
-                        error = true;
-                        log(e);
+                    } catch (err) {
+                        /* error is passed into fs.readFile, so this catch can't be on error */
+                        errorFlag = true;
+                        log('ERROR: '.red + compileFilename.red + ': ' + err.message);
                     }
 
-                    if (!error) {
-                        mkdirp.mkdirp(path.dirname(filepath), function (err) {
-                            if (err) {
-                                log('[ERROR]'.red + ' mkdirp.mkdirp: ' + err);
-                                throw err;
+                    if (!errorFlag) {
+                        mkdirp.mkdirp(path.dirname(filepath), function (error) {
+                            if (error) {
+                                log('ERROR: '.red + 'mkdirp.mkdirp: ' + error.message);
+                                throw error;
                             }
 
-                            fs.writeFile(filepath, data, function (err) {
-                                if (err) {
-                                    log('[ERROR]'.red + ' fs.writeFile: ' + err);
-                                    throw err;
+                            fs.writeFile(filepath, data, function (error) {
+                                if (error) {
+                                    log('ERROR: '.red + 'fs.writeFile: ' + error.message);
+                                    throw error;
                                 }
-                                log('Compiled '.green + source + filename + ' as '.green + compileFilename);
+                                log('Compiled '.green + sourcePath + filename + ' as '.green + compileFilename);
                             });
                         });
                     }
@@ -119,31 +120,31 @@ function compile(src, curr, prev) {
 
 
 if (argv.bootstrap) {
-    wrench.readdirRecursive(source, function (error, fileList) {
+    wrench.readdirRecursive(sourcePath, function (error, fileList) {
         if (fileList) {
             fileList.forEach(function (filename) {
-                compile(source + filename);
+                compile(sourcePath + filename);
             });
         }
     });
 }
 
 
-if (!fs.existsSync(source)) {
-    console.log('[ERROR]'.red + ' ' + source + ' does not exist');
+if (!fs.existsSync(sourcePath)) {
+    console.log('ERROR: '.red + sourcePath + ' does not exist');
     process.exit();
 }
 
 
-if (!fs.existsSync(destination)) {
-    console.log('[ERROR]'.red + ' ' + destination + ' does not exist');
+if (!fs.existsSync(destinationPath)) {
+    console.log('ERROR: '.red + destinationPath + ' does not exist');
     process.exit();
 }
 
 
-watch.createMonitor(source, function (monitor) {
-    log('Watching '.green + source);
-    log('Will write to '.yellow + destination.yellow);
+watch.createMonitor(sourcePath, function (monitor) {
+    log('Watching '.green + sourcePath);
+    log('Will write to '.yellow + destinationPath.yellow);
     log('Type ^C to cancel'.yellow);
 
     monitor.on('created', compile);
