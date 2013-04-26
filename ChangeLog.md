@@ -1,8 +1,20 @@
 # Changelog
 
+## 0.0.8
+- code refactoring - made variable names make more sense
+
+- fixed a defect with error messages not being properly displayed by
+  terminal-notify in the OS X notification center
+
+- Issue #10 - clearer identification of error messages
+
+
+
 ## 0.0.7
 - modified to not include the .dust extension in the registered name of the
   compiled dust template ([CRHain88][0])
+
+
 
 ## 0.0.6
 - updated `watch` to 0.7.0
