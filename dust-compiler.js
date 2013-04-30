@@ -44,9 +44,10 @@ if (argv.nonotify) {
             };
 
         case 'linux':
-            notifier = require('notify-send');
+        case 'win32':
+            notifier = require('growl');
             return function (message) {
-                notifier.notify('Dust Compiler', message.stripColors);
+                notifier(message.stripColors, { title: 'Dust Compiler' });
                 console.log(message);
             };
 

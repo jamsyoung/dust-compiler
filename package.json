@@ -16,7 +16,7 @@
         "colors": "0.6.0-1",
         "dustjs-linkedin": "1.2.3",
         "mkdirp": "0.3.5",
-        "notify-send": "0.1.2",
+        "growl": "1.x",
         "optimist": "0.4.0",
         "terminal-notifier": "0.1.0",
         "watch": "0.7.0",
