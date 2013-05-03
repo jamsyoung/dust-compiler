@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.0.9
+- added support for Windows notification via growl ([ZoogieZork][1])
+
+- switched Linux notification to hit notify-send via grow ([ZoogieZork][1])
+
+- upgraded dustjs-linkedin to 1.2.4
+
+- added `-v|--version` argument to display the version installed
+
+- changed how `-s|--source` and `-d|--destination` arguments processed
+
+
+
 ## 0.0.8
 - code refactoring - made variable names make more sense
 
@@ -66,4 +79,5 @@
 
 
 [0]: https://github.com/CRHain88
+[1]: https://github.com/ZoogieZork
 
