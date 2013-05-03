@@ -5,26 +5,44 @@
 
 var fs = require('fs'),
     log,
-    path = require('path'),
-    argv = require('optimist')
-        .usage('Usage: dust-compiler -s|--source source_path -d|--destination destination_path [--bootstrap] [--nonotify] [--includepath]')
-        .demand(['source', 'destination'])
-        .alias('source', 's')
-        .alias('destination', 'd')
-        .describe('source', 'The source .dust templates to watch.')
-        .describe('destination', 'The destination destination to write compiles .js files out to.')
-        .describe('bootstrap', 'Does not replicate.  Displays the curl command that would be used.')
-        .describe('nonotify', 'Do not notify.')
-        .describe('includepath', 'Include the path in the name of the compiled dust template.')
-        .argv,
+    argv,
     dust = require('dustjs-linkedin'),
+    path = require('path'),
     watch = require('watch'),
     colors = require('colors'),
     mkdirp = require('mkdirp'),
     wrench = require('wrench'),
+    metaData = require('./package.json'),
+    optimist = require('optimist'),
+    sourcePath,
+    destinationPath;
+
+argv = optimist
+    .usage('Usage: dust-compiler -s|--source source_path -d|--destination destination_path [--bootstrap] [--nonotify] [--includepath]')
+    .alias('source', 's')
+    .alias('destination', 'd')
+    .alias('version', 'v')
+    .describe('source', 'The source .dust templates to watch.')
+    .describe('destination', 'The destination destination to write compiles .js files out to.')
+    .describe('bootstrap', 'Does not replicate.  Displays the curl command that would be used.')
+    .describe('nonotify', 'Do not notify.')
+    .describe('includepath', 'Include the path in the name of the compiled dust template.')
+    .describe('version', 'Show the current version installed of dust-compiler')
+    .argv;
+
+if (argv.v) {
+    console.log('dust-compiler v' + metaData.version);
+    process.exit();
+}
+
+if (argv.s && argv.d) {
     sourcePath = argv.s.match('/$') ? path.normalize(argv.s) : path.normalize(argv.s + '/'),      // must end in slash
     destinationPath = argv.d.match('/$') ? path.normalize(argv.d) : path.normalize(argv.d + '/'); // must end in slash
-
+} else {
+    optimist.showHelp();
+    console.log('ERROR: '.red + '-s and -d are required arguments');
+    process.exit();
+}
 
 if (argv.nonotify) {
     log = console.log;
