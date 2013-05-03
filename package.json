@@ -1,9 +1,9 @@
 {
     "name": "dust-compiler",
     "preferGlobal": true,
-    "version": "0.0.8",
+    "version": "0.0.9",
     "author": "James Young <jmeyoung@gmail.com>,",
-    "description": "Dust.js template watcher/compiler with support for OS X Notification Center and Linux notify-send",
+    "description": "Dust.js template watcher/compiler with support for notifications on OS X, Linux, and even Windows",
     "repository": {
         "type": "git",
         "url": "https://github.com/jamsyoung/dust-compiler"
@@ -14,9 +14,9 @@
     "main": "dust-compiler.js",
     "dependencies": {
         "colors": "0.6.0-1",
-        "dustjs-linkedin": "1.2.3",
+        "dustjs-linkedin": "1.2.4",
+        "growl": "1.7.0",
         "mkdirp": "0.3.5",
-        "growl": "1.x",
         "optimist": "0.4.0",
         "terminal-notifier": "0.1.0",
         "watch": "0.7.0",
