@@ -1,7 +1,7 @@
 # Changelog
 
 ## 0.0.9
-- added support for Windows notification via growl ([ZoogieZork][1])
+- EXPERIMENTAL - added support for Windows notification via growl ([ZoogieZork][1])
 
 - switched Linux notification to hit notify-send via grow ([ZoogieZork][1])
 
@@ -10,6 +10,8 @@
 - added `-v|--version` argument to display the version installed
 
 - changed how `-s|--source` and `-d|--destination` arguments processed
+
+- reverted `--bootstrap` to only build, it does not watch anymore
 
 
 

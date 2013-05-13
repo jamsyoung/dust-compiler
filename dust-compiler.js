@@ -137,18 +137,6 @@ function compile(source, currentStat, previousStat) {
 }
 
 
-
-if (argv.bootstrap) {
-    wrench.readdirRecursive(sourcePath, function (error, fileList) {
-        if (fileList) {
-            fileList.forEach(function (filename) {
-                compile(sourcePath + filename);
-            });
-        }
-    });
-}
-
-
 if (!fs.existsSync(sourcePath)) {
     console.log('ERROR: '.red + sourcePath + ' does not exist');
     process.exit();
@@ -161,11 +149,22 @@ if (!fs.existsSync(destinationPath)) {
 }
 
 
-watch.createMonitor(sourcePath, function (monitor) {
-    log('Watching '.green + sourcePath);
-    log('Will write to '.yellow + destinationPath.yellow);
-    log('Type ^C to cancel'.yellow);
+if (argv.bootstrap) {
+    wrench.readdirRecursive(sourcePath, function (error, fileList) {
+        if (fileList) {
+            fileList.forEach(function (filename) {
+                compile(sourcePath + filename);
+            });
+        }
+    });
+} else {
+    watch.createMonitor(sourcePath, function (monitor) {
+        log('Watching '.green + sourcePath);
+        log('Will write to '.yellow + destinationPath.yellow);
+        log('Type ^C to cancel'.yellow);
 
-    monitor.on('created', compile);
-    monitor.on('changed', compile);
-});
+        monitor.on('created', compile);
+        monitor.on('changed', compile);
+    });
+}
+
