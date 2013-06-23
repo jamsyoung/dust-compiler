@@ -1,4 +1,6 @@
 # Dust Compiler
+[![NPM version](https://badge.fury.io/js/dust-compiler.png)](http://badge.fury.io/js/dust-compiler)
+
 This is a basic dust compiler, there are many out there. This one adds support
 for the OS X 10.8.x Notification Center and notifications on modern Linux
 desktops to bring more visiblity to compile errors when developing while the
