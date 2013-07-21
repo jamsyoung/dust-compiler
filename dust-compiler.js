@@ -36,7 +36,7 @@ if (argv.v) {
 }
 
 if (argv.s && argv.d) {
-    sourcePath = argv.s.match('/$') ? path.normalize(argv.s) : path.normalize(argv.s + '/'),      // must end in slash
+    sourcePath = argv.s.match('/$') ? path.normalize(argv.s) : path.normalize(argv.s + '/');      // must end in slash
     destinationPath = argv.d.match('/$') ? path.normalize(argv.d) : path.normalize(argv.d + '/'); // must end in slash
 } else {
     optimist.showHelp();
