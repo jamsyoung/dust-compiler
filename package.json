@@ -14,16 +14,16 @@
     "main": "dust-compiler.js",
     "dependencies": {
         "colors": "0.6.0-1",
-        "dustjs-linkedin": "1.2.4",
+        "dustjs-linkedin": "2.0.0",
         "growl": "1.7.0",
         "mkdirp": "0.3.5",
-        "optimist": "0.4.0",
-        "terminal-notifier": "0.1.0",
-        "watch": "0.7.0",
-        "wrench": "1.4.4"
+        "optimist": "0.6.0",
+        "terminal-notifier": "0.1.2",
+        "watch": "0.8.0",
+        "wrench": "1.5.1"
     },
     "engines": {
-        "node": ">=0.8.18"
+        "node": ">=0.10.0"
     },
     "keywords": [
         "compiler",
