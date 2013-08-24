@@ -3,6 +3,9 @@
 .jshintrc
 .travis.yml
 
+CONTRIBUTING.md
+CONTRIBUTORS.md
+ChangeLog.md
 Gruntfile.js
 code-coverage.html
 

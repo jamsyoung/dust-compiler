@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0
+- no functional changes, minor version bumped because it should have always been
+  0.1.x from the beginning.
+
+- updated `colors` to 0.6.2
+
+- updated `dustjs-linkedin` to 2.0.2
+
+- added lots of dev dependencies to support grunt test tasks
+
+- added a man page, now you can do `man dust-compiler` from a shell if desired
+
+
 ## 0.0.9
 - EXPERIMENTAL - added support for Windows notification via growl ([ZoogieZork][1])
 
