@@ -4,8 +4,8 @@ for the OS X 10.8.x Notification Center and notifications on modern Linux
 desktops to bring more visiblity to compile errors when developing while the
 terminal window that it is running in is not visible.
 
-[![Build Status](https://travis-ci.org/jamsyoung/dust-compiler.png)][0]
-[![NPM version](https://badge.fury.io/js/dust-compiler.png)][1]
+[![Build Status](https://travis-ci.org/jamsyoung/dust-compiler.png)][https://travis-ci.org/jamsyoung/dust-compiler]
+[![NPM version](https://badge.fury.io/js/dust-compiler.png)][http://badge.fury.io/js/dust-compiler]
 
 
 ## Install
@@ -74,7 +74,7 @@ You can load up your command line with just about everything.
 
 - `grunt lint` - Runs a jshint task.
 
-- 'grunt coverage' - Runs a code coverage task.  NOTE: There is currently zero
+- `grunt coverage` - Runs a code coverage task.  NOTE: There is currently zero
   coverage since there are no unit tests.
 
 - `grunt complexity` - Runs a complexity task.  Currently fails do to the
@@ -83,9 +83,3 @@ You can load up your command line with just about everything.
   request.
 
 - `npm run build-man` - Builds the man page.
-
-
-
-
-[0]: https://travis-ci.org/jamsyoung/dust-compiler
-[1]: http://badge.fury.io/js/dust-compiler
