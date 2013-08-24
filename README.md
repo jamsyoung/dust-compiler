@@ -4,8 +4,8 @@ for the OS X 10.8.x Notification Center and notifications on modern Linux
 desktops to bring more visiblity to compile errors when developing while the
 terminal window that it is running in is not visible.
 
-[![Build Status](https://travis-ci.org/jamsyoung/dust-compiler.png)][https://travis-ci.org/jamsyoung/dust-compiler]
-[![NPM version](https://badge.fury.io/js/dust-compiler.png)][http://badge.fury.io/js/dust-compiler]
+[![Build Status](https://travis-ci.org/jamsyoung/dust-compiler.png)](https://travis-ci.org/jamsyoung/dust-compiler)
+[![NPM version](https://badge.fury.io/js/dust-compiler.png)](http://badge.fury.io/js/dust-compiler)
 
 
 ## Install
