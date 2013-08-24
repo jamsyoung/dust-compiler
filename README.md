@@ -1,20 +1,18 @@
 # Dust Compiler
-[![NPM version](https://badge.fury.io/js/dust-compiler.png)](http://badge.fury.io/js/dust-compiler)
-
 This is a basic dust compiler, there are many out there. This one adds support
 for the OS X 10.8.x Notification Center and notifications on modern Linux
 desktops to bring more visiblity to compile errors when developing while the
 terminal window that it is running in is not visible.
 
+[![Build Status](https://travis-ci.org/jamsyoung/dust-compiler.png)][0]
+[![NPM version](https://badge.fury.io/js/dust-compiler.png)][1]
+
 
 ## Install
-You will likely integrate this into the project you are working on.  Add this
-as a devDependency in your package.json and:
+It is recommended to install this globally so you can have dust-copmiler to run
+from any location on your machine, for any project you are working on.
 
-    $ npm install
-
-Next add a symlink to `node_modules/.bin/dust-compiler` anywhere you like in
-your project folder.
+    $ npm install -g dust-compiler
 
 
 ### Enabling notifications in Linux
@@ -26,17 +24,17 @@ If not, you will need to install the "libnotify-bin" (Ubuntu) or "libnotify"
 ## Turning it on
 To fire it up just do this:
 
-    $ ./dust-compiler -s source_path -d destination_path
+    $ dust-compiler -s source_path -d destination_path
 
 Notifications will look like this:
 
 Success!
 
-![](http://grab.by/jrgo)
+![](http://new.tinygrab.com/d34460e816c9911aabc9cebaa92ac8c13910a39faa.png)
 
 or Failure :(
 
-![](http://grab.by/jrh4)
+![](http://new.tinygrab.com/d34460e8169c9c133481adf8a39126e0a40984b603.png)
 
 
 ## Bootstrapping
@@ -44,13 +42,13 @@ In cases where you are creating a new project and have lots of existing dust
 templates, you will want to bootstrap the files.  To save time you can run
 the following to automatically build everything in the source folder.
 
-    $ ./dust-compiler -s source_path -d destination_path --bootstrap
+    $ dust-compiler -s source_path -d destination_path --bootstrap
 
 
 ## Disabling notifications
 Don't like the notifications?  Prefer to watch the terminal window instead?
 
-    $ ./dust-compiler -s source_path -d destination_path --nonotify
+    $ dust-compiler -s source_path -d destination_path --nonotify
 
 
 ## Include path in compiled template name
@@ -59,12 +57,35 @@ may need the name of the compiled template that is registered in the Dust.js
 cache to include the path.  Using the same templates on server side and client
 side may require this.  I added a switch for that.
 
-    $ ./dust-compiler -s source_path -d destination_path --includepath
+    $ dust-compiler -s source_path -d destination_path --includepath
 
 
 ## Overloading arguments
 You can load up your command line with just about everything.
 
-    $ ./dust-compiler -s source_path -d destination_path --bootstrap --includepath --nonotify
+    $ dust-compiler -s source_path -d destination_path --bootstrap --includepath --nonotify
 
 
+## Development
+
+### Available Tasks
+
+- `grunt test` - Runs all of the completed grunt test tasks.
+
+- `grunt lint` - Runs a jshint task.
+
+- 'grunt coverage' - Runs a code coverage task.  NOTE: There is currently zero
+  coverage since there are no unit tests.
+
+- `grunt complexity` - Runs a complexity task.  Currently fails do to the
+  required shebang needed for Node command line applications.  If you know a way
+  around this without too much trouble, please let me know or create a pull
+  request.
+
+- `npm run build-man` - Builds the man page.
+
+
+
+
+[0]: https://travis-ci.org/jamsyoung/dust-compiler
+[1]: http://badge.fury.io/js/dust-compiler

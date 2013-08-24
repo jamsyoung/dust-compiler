@@ -1,0 +1,33 @@
+.TH "DUST\-COMPILER" "1" "August 2013" "" ""
+.SH "NAME"
+\fBdust-compiler\fR \- Dust\.js template watcher/compiler
+.SH SYNOPSIS
+.P
+dust\-compiler \-s|\-\-source source_path \-d|\-\-destination destination_path
+[\-\-bootstrap] [\-\-nonotify] [\-\-includepath]
+.SH DESCRIPTION
+.P
+\fBdust\-compiler\fR is a command line tool that will watch and compile Dust\.js
+templates\.  It provides notification support for OS X, Linux, and Windows\.
+.P
+The following options are available:
+.P
+\-s, \-\-source         Source path for uncompiled Dust templates\.
+.P
+\-d, \-\-destination    Destination path to write out compiled Dust templates\.
+.P
+\-\-bootstrap          Process all files immediatley\.
+.P
+\-\-nonotify           Do not send notification messages\.
+.P
+\-\-includepath        Include the path of the template as part of the registered
+                     name in the compiled template\.
+.SH SEE ALSO
+.P
+https://github\.com/jamsyoung/dust\-compiler
+.P
+https://npmjs\.org/package/dust\-compiler
+.SH AUTHOR
+.P
+James Young jmeyoung@gmail\.com http://jamsyoung\.com
+
