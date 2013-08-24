@@ -13,7 +13,7 @@
         "url": "https://github.com/jamsyoung/dust-compiler"
     },
     "bugs": {
-        "url": "https://github.com/jamsyoung/dust-compiler/isues",
+        "url": "https://github.com/jamsyoung/dust-compiler/issues",
         "email": "jmeyoung@gmail.com"
     },
     "man": "./man/man1/dust-compiler.1",
