@@ -8,6 +8,8 @@ terminal window that it is running in is not visible.
 [![NPM version](https://badge.fury.io/js/dust-compiler.png)](http://badge.fury.io/js/dust-compiler)
 [![Dependency Status](https://gemnasium.com/jamsyoung/dust-compiler.png)](https://gemnasium.com/jamsyoung/dust-compiler)
 
+[![NPM](https://nodei.co/npm/dust-compiler.png?downloads=true&stars=true)](https://nodei.co/npm/dust-compiler/)
+
 
 ## Install
 It is recommended to install this globally so you can have dust-copmiler to run
