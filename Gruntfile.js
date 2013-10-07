@@ -7,7 +7,7 @@ module.exports = function (grunt) {
         jshint: {
             files: [
                 'Gruntfile.js',
-                'dist-compiler.js',
+                'lib/*.js',
                 'test/**/*.js'
             ],
             options: {
