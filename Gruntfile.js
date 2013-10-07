@@ -8,7 +8,8 @@ module.exports = function (grunt) {
             files: [
                 'Gruntfile.js',
                 'lib/*.js',
-                'test/**/*.js'
+                'test/*/js',
+                'test/mocha/*.js'
             ],
             options: {
                 ignores: [],
