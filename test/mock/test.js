@@ -1,0 +1,1 @@
+(function(){dust.register("test",body_0);function body_0(chk,ctx){return chk.exists(ctx.get("foo"),ctx,{"block":body_1},null);}function body_1(chk,ctx){return chk.reference(ctx.getPath(false,["foo","bar"]),ctx,"h").write(" ").reference(ctx.getPath(false,["foo","baz"]),ctx,"h");}return body_0;})();
