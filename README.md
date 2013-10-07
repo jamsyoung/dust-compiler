@@ -7,6 +7,7 @@ terminal window that it is running in is not visible.
 [![Build Status](https://travis-ci.org/jamsyoung/dust-compiler.png)](https://travis-ci.org/jamsyoung/dust-compiler)
 [![NPM version](https://badge.fury.io/js/dust-compiler.png)](http://badge.fury.io/js/dust-compiler)
 [![Dependency Status](https://gemnasium.com/jamsyoung/dust-compiler.png)](https://gemnasium.com/jamsyoung/dust-compiler)
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/jamsyoung/dust-compiler/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 [![NPM](https://nodei.co/npm/dust-compiler.png?downloads=true&stars=true)](https://nodei.co/npm/dust-compiler/)
 

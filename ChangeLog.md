@@ -1,5 +1,14 @@
 # Changelog
 
+
+## 0.1.2
+- Updated README
+
+
+## 0.1.1
+- Updated `dustjs-linkedin` to 2.0.3
+
+
 ## 0.1.0
 - no functional changes, minor version bumped because it should have always been
   0.1.x from the beginning.
@@ -80,7 +89,7 @@
 ## 0.0.5
 - added support notifications on Linux via notify-send
 
-- added `--no-notify` option for platforms that do not have notify-send or 
+- added `--no-notify` option for platforms that do not have notify-send or
   terminal-notifier support, or people that just don't want to see any
   notifications
 
