@@ -1,4 +1,5 @@
 *.tgz
+test.js
 code-coverage.html
 node_modules
 package
