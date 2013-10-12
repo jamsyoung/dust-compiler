@@ -1,3 +1,3 @@
 #!/bin/bash
 
-export DEBUG="compile,log"
+export DEBUG="compile,log-notify"
