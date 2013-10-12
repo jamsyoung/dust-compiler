@@ -6,7 +6,8 @@ module.exports = function (grunt) {
     grunt.initConfig({
         jshint: {
             files: [
-                '*.js',
+                'dust-compiler-cli.js',
+                'Gruntfile.js',
                 'lib/*.js',
                 'test/*.js',
                 'test/mocha/*.js'
