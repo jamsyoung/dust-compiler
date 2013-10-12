@@ -2,3 +2,4 @@
 code-coverage.html
 node_modules
 package
+test/mock/*.js
