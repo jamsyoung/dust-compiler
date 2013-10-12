@@ -34,7 +34,7 @@ module.exports = function (grunt) {
                 options: {
                     errorsOnly: false,
                     cyclomatic: 4,
-                    halstead: 11,
+                    halstead: 12,
                     maintainability: 100
                 }
             }
