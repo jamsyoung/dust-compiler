@@ -27,7 +27,7 @@ module.exports = function (grunt) {
                     errorsOnly: false,
                     cyclomatic: 2,
                     halstead: 5,
-                    maintainability: 84
+                    maintainability: 81
                 }
             },
             source: {
@@ -45,6 +45,14 @@ module.exports = function (grunt) {
                 options: {
                     reporter: 'spec',
                     require: 'test/mocha-setup'
+                },
+                src: ['test/mocha/*.js']
+            },
+            coverage: {
+                options: {
+                    reporter: 'html-cov',
+                    quiet: true,
+                    captureFile: 'code-coverage.html'
                 },
                 src: ['test/mocha/*.js']
             }
