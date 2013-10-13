@@ -6,9 +6,11 @@ module.exports = function (grunt) {
     grunt.initConfig({
         jshint: {
             files: [
+                'dust-compiler-cli.js',
                 'Gruntfile.js',
-                'dist-compiler.js',
-                'test/**/*.js'
+                'lib/*.js',
+                'test/*.js',
+                'test/mocha/*.js'
             ],
             options: {
                 ignores: [],
@@ -23,17 +25,17 @@ module.exports = function (grunt) {
                 ],
                 options: {
                     errorsOnly: false,
-                    cyclomatic: 1,
-                    halstead: 6,
-                    maintainability: 80
+                    cyclomatic: 2,
+                    halstead: 5,
+                    maintainability: 81
                 }
             },
             source: {
-                src: ['dust-compiler.js'],
+                src: ['lib/*.js'],
                 options: {
                     errorsOnly: false,
-                    cyclomatic: 1,
-                    halstead: 1,
+                    cyclomatic: 4,
+                    halstead: 12,
                     maintainability: 100
                 }
             }
@@ -42,24 +44,18 @@ module.exports = function (grunt) {
             test: {
                 options: {
                     reporter: 'spec',
-                    require: 'test/coverage-blanket'
+                    require: 'test/mocha-setup'
                 },
-                src: ['test/*.js']
+                src: ['test/mocha/*.js']
             },
-            'html-cov': {
+            coverage: {
                 options: {
                     reporter: 'html-cov',
                     quiet: true,
                     captureFile: 'code-coverage.html'
                 },
-                src: ['test/**/*.js']
-            }//,
-            // 'travis-cov': {
-            //     options: {
-            //         reporter: 'travis-cov'
-            //     },
-            //     src: ['test/**/*.js']
-            // }
+                src: ['test/mocha/*.js']
+            }
         },
         clean: {
             files: [
@@ -74,10 +70,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-mocha-test');
     grunt.loadNpmTasks('grunt-contrib-clean');
 
-    grunt.registerTask('lint', ['jshint']);
-    grunt.registerTask('coverage', ['mochaTest']);
-
-    grunt.registerTask('test', ['lint']);
+    grunt.registerTask('test', ['jshint', 'complexity', 'mochaTest']);
 
     grunt.registerTask('default', ['test']);
 };

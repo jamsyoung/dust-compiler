@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.2.0
+- restructured to have an internal library (`lib/compile.js`) that could be
+  used indpendent of the command line wrapper.
+
+- pulled the log notification pieces out into a stand alone
+  [log-notify][log-notify] npm package which is included as a dependency
+
+- added lots of unit tests and mock data to test against
+
+- got blanket coverage working (kinda) - fixes issue #16
+
+- issue #15 should not cause any problems, as far as I can tell.
+
 
 ## 0.1.2
 - Updated README
@@ -104,4 +117,5 @@
 
 [0]: https://github.com/CRHain88
 [1]: https://github.com/ZoogieZork
+[log-notify]: https://npmjs.org/package/log-notify
 

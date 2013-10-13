@@ -1,0 +1,37 @@
+<html>
+<body>
+<h2>Testing existence</h2>
+<div id='existence'></div>
+
+<h2>Testing non-existence</h2>
+<div id='nonexistence'></div>
+
+<script src='../../node_modules/dustjs-linkedin/dist/dust-core-2.0.3.js'></script>
+<script src='test.js'></script>
+<script>
+// For this test suite, the template name will always be either 'test' or 'test/mock/test'
+// Setting this script to work with either of them
+var templateName = (typeof dust.cache.test !== 'undefined') ? 'test' : 'test/mock/test',
+    existenceData = {
+        foo: {
+            bar: 'Hello?',
+            baz: 'Is there anybody in there?'
+        }
+    },
+    nonexistenceData = null;
+
+// the test.dust template includes an existence logic check "{?foo}"
+// this will execute that part of the template
+dust.render(templateName, existenceData, function (error, data) {
+    document.getElementById('existence').innerHTML = data;
+});
+
+// test.dust also includes a non-existence logic check "{^foo}"
+// this will execute that part of the template
+dust.render(templateName, nonexistenceData, function (error, data) {
+    document.getElementById('nonexistence').innerHTML = data;
+});
+</script>
+</body>
+</html>
+

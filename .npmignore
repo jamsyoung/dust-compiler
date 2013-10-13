@@ -8,6 +8,8 @@ CONTRIBUTORS.md
 ChangeLog.md
 Gruntfile.js
 code-coverage.html
+enable-debug.sh
+test.js
 
 src/
 test/
