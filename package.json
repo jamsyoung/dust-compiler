@@ -19,19 +19,14 @@
     "man": "./man/man1/dust-compiler.1",
     "scripts": {
         "build-man": "node_modules/.bin/marked-man src/man/man1/dust-compiler.1.md > man/man1/dust-compiler.1",
-        "test": "grunt test",
-        "travis-cov": {
-            "threshold": 100
-        }
+        "test": "grunt test"
     },
     "dependencies": {
         "colors": "0.6.2",
         "dustjs-linkedin": "2.0.3",
-        "growl": "1.7.0",
         "log-notify": "0.1.1",
         "mkdirp": "0.3.5",
         "optimist": "0.6.0",
-        "terminal-notifier": "0.1.2",
         "watch": "0.8.0",
         "wrench": "1.5.1"
     },
@@ -45,8 +40,7 @@
         "grunt-contrib-jshint": "0.6.3",
         "grunt-mocha-test": "0.6.3",
         "marked-man": "0.0.2",
-        "mocha": "1.12.0",
-        "travis-cov": "0.2.4"
+        "mocha": "1.12.0"
     },
     "engines": {
         "node": ">=0.10.13",
