@@ -9,8 +9,6 @@ terminal window that it is running in is not visible.
 [![Dependency Status](https://gemnasium.com/jamsyoung/dust-compiler.png)](https://gemnasium.com/jamsyoung/dust-compiler)
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/jamsyoung/dust-compiler/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
-[![NPM](https://nodei.co/npm/dust-compiler.png?downloads=true&stars=true)](https://nodei.co/npm/dust-compiler/)
-
 
 ## Install
 It is recommended to install this globally so you can have dust-copmiler to run
@@ -72,18 +70,9 @@ You can load up your command line with just about everything.
 
 ## Development
 
-### Available Tasks
+### Common Tasks
+Look in the Gruntfile.js for more details.
 
 - `grunt test` - Runs all of the completed grunt test tasks.
-
-- `grunt lint` - Runs a jshint task.
-
-- `grunt coverage` - Runs a code coverage task.  NOTE: There is currently zero
-  coverage since there are no unit tests.
-
-- `grunt complexity` - Runs a complexity task.  Currently fails do to the
-  required shebang needed for Node command line applications.  If you know a way
-  around this without too much trouble, please let me know or create a pull
-  request.
 
 - `npm run build-man` - Builds the man page.
