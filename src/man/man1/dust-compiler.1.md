@@ -3,7 +3,7 @@
 
 ## SYNOPSIS
 dust-compiler -s|--source source_path -d|--destination destination_path
-[--bootstrap] [--nonotify] [--includepath]
+[--bootstrap] [--nonotify] [--includepath] [--amd]
 
 
 
@@ -23,6 +23,8 @@ The following options are available:
 
 --includepath        Include the path of the template as part of the registered
                      name in the compiled template.
+
+--amd                Wrap the output AMD style
 
 
 ## SEE ALSO

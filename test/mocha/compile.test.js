@@ -68,6 +68,23 @@ describe('compile', function () {
         }, 500);
     });
 
+    it('should support AMD syntax if the --amd flag is used', function (done) {
+        compile('test.dust', 'test/mock/', 'test/mock/', { amd: true });
+
+        // wait 0.5 seconds before reading the file
+        setTimeout(function () {
+            fs.readFile('test/mock/test.js', 'utf-8', function (error, data) {
+                if (error) { console.log(error); }
+
+                data.should.be.a('string');
+                data.should.contain('define(["dust"], function() { dust = require("dust");');
+                data.should.match(/^define/);
+                data.should.match(/\}\);$/);
+                done();
+            });
+        }, 500);
+    });
+
     it('should not use log-notify if options.nonotify is set', function () {
         // this test is satisified by the code coverage showing the conditional is tested
         // there is no way to use a 'should', 'expect', or 'assert' to check if the os specific
