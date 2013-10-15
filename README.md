@@ -68,7 +68,7 @@ flag.  This will wrap it with the following, where `COMPILED_TEMPLATE` contains
 the compiled template.  I don't personally use templates this way. If this
 feature needs to be optimized, add details to issue #14 or open a new issue.
 
-    define(["dust"], function() { dust = require("dust"); COMPILED_TEMPLATE });
+    define(["dust"], function () { dust = require("dust"); COMPILED_TEMPLATE });
 
 
 ## Overloading arguments
