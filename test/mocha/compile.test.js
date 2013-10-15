@@ -77,7 +77,7 @@ describe('compile', function () {
                 if (error) { console.log(error); }
 
                 data.should.be.a('string');
-                data.should.contain('define(["dust"], function() { dust = require("dust");');
+                data.should.contain('define(["dust"], function () { dust = require("dust");');
                 data.should.match(/^define/);
                 data.should.match(/\}\);$/);
                 done();
