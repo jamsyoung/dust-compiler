@@ -1,4 +1,8 @@
-# Changelog
+# Change Log
+
+## 0.3.0
+- adding --amd flag for AMD support
+
 
 ## 0.2.0
 - restructured to have an internal library (`lib/compile.js`) that could be

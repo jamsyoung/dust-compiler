@@ -62,10 +62,19 @@ side may require this.  I added a switch for that.
     $ dust-compiler -s source_path -d destination_path --includepath
 
 
+## AMD
+If you need your compiled template to be output AMD style you can add a `--amd`
+flag.  This will wrap it with the following, where `COMPILED_TEMPLATE` contains
+the compiled template.  I don't personally use templates this way. If this
+feature needs to be optimized, add details to issue #14 or open a new issue.
+
+    define(["dust"], function () { dust = require("dust"); COMPILED_TEMPLATE });
+
+
 ## Overloading arguments
 You can load up your command line with just about everything.
 
-    $ dust-compiler -s source_path -d destination_path --bootstrap --includepath --nonotify
+    $ dust-compiler -s source_path -d destination_path --bootstrap --includepath --nonotify --amd
 
 
 ## Development
