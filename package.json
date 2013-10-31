@@ -6,7 +6,7 @@
     "preferGlobal": true,
     "main": "dust-compiler.js",
     "bin": {
-        "dust-compiler": "./dust-compiler.js"
+        "dust-compiler": "./dust-compiler-cli.js"
     },
     "repository": {
         "type": "git",
