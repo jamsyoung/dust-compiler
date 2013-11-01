@@ -1,12 +1,12 @@
 {
     "name": "dust-compiler",
-    "version": "0.3.2",
+    "version": "0.3.3",
     "author": "James Young <jmeyoung@gmail.com> (http://jamsyoung.com)",
     "description": "Dust.js template watcher/compiler with support for notifications on OS X, Linux, and even Windows",
     "preferGlobal": true,
     "main": "dust-compiler.js",
     "bin": {
-        "dust-compiler": "./dust-compiler.js"
+        "dust-compiler": "./dust-compiler-cli.js"
     },
     "repository": {
         "type": "git",
