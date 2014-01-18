@@ -17,6 +17,10 @@ from any location on your machine, for any project you are working on.
     $ npm install -g dust-compiler
 
 
+## File Extension
+Expectation is that the files being compiled end in the `.dust` file extension
+
+
 ### Enabling notifications in Linux
 Many Linux distributions ship with the `notify-send` tool already installed.
 If not, you will need to install the "libnotify-bin" (Ubuntu) or "libnotify"
@@ -85,3 +89,4 @@ Look in the Gruntfile.js for more details.
 - `grunt test` - Runs all of the completed grunt test tasks.
 
 - `npm run build-man` - Builds the man page.
+
