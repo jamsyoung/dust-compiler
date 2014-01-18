@@ -24,12 +24,12 @@
     "dependencies": {
         "colors": "0.6.2",
         "debug": "0.7.2",
-        "dustjs-linkedin": "2.0.3",
+        "dustjs-linkedin": "2.3.0",
         "log-notify": "0.1.2",
         "mkdirp": "0.3.5",
         "optimist": "0.6.0",
         "watch": "0.8.0",
-        "wrench": "1.5.4"
+        "wrench": "1.5.6"
     },
     "devDependencies": {
         "blanket": "1.1.5",
