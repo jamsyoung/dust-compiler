@@ -1,12 +1,17 @@
 ## Contributors
-- [James Young][0]
 
-- [Michael Imamura][1]
+- [James Young][james]
 
-- [Christian][2]
+- [Michael Imamura][michael]
+
+- [Christian][christian]
+
+- [Aaron Snow][aaron]
 
 
 
-[0]: https://github.com/jamsyoung
-[1]: https://github.com/ZoogieZork
-[2]: https://github.com/CRHain88
+[james]: https://github.com/jamsyoung
+[michael]: https://github.com/ZoogieZork
+[christian]: https://github.com/CRHain88
+[aaron]: https://github.com/aaronsnow
+
