@@ -1,6 +1,6 @@
 {
     "name": "dust-compiler",
-    "version": "0.3.4",
+    "version": "0.3.5",
     "author": "James Young <jmeyoung@gmail.com> (http://jamsyoung.com)",
     "description": "Dust.js template watcher/compiler with support for notifications on OS X, Linux, and even Windows",
     "preferGlobal": true,
