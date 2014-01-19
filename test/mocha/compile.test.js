@@ -93,7 +93,7 @@ describe('compile', function () {
     });
 
     it('should match the exact same output from dustc with includepath', function (done) {
-        var controlData = '(function(){dust.register("test/mock/test",body_0);function body_0(chk,ctx){return chk.exists(ctx.get("foo"),ctx,{"block":body_1},null).notexists(ctx.get("foo"),ctx,{"block":body_2},null);}function body_1(chk,ctx){return chk.reference(ctx.getPath(false,["foo","bar"]),ctx,"h").write(" ").reference(ctx.getPath(false,["foo","baz"]),ctx,"h");}function body_2(chk,ctx){return chk.write("Goodbye cruel world");}return body_0;})();';
+        var controlData = '(function(){dust.register("test/mock/test",body_0);function body_0(chk,ctx){return chk.exists(ctx._get(false, ["foo"]),ctx,{"block":body_1},null).notexists(ctx._get(false, ["foo"]),ctx,{"block":body_2},null);}function body_1(chk,ctx){return chk.reference(ctx._get(false,["foo","bar"]),ctx,"h").write(" ").reference(ctx._get(false,["foo","baz"]),ctx,"h");}function body_2(chk,ctx){return chk.write("Goodbye cruel world");}return body_0;})();';
         compile('test.dust', 'test/mock/', 'test/mock/', { includepath: true });
 
         // wait 0.5 seconds before reading the file
@@ -109,7 +109,7 @@ describe('compile', function () {
     });
 
     it('should match the exact same output from dustc with no path', function (done) {
-        var controlData = '(function(){dust.register("test",body_0);function body_0(chk,ctx){return chk.exists(ctx.get("foo"),ctx,{"block":body_1},null).notexists(ctx.get("foo"),ctx,{"block":body_2},null);}function body_1(chk,ctx){return chk.reference(ctx.getPath(false,["foo","bar"]),ctx,"h").write(" ").reference(ctx.getPath(false,["foo","baz"]),ctx,"h");}function body_2(chk,ctx){return chk.write("Goodbye cruel world");}return body_0;})();';
+        var controlData = '(function(){dust.register("test",body_0);function body_0(chk,ctx){return chk.exists(ctx._get(false, ["foo"]),ctx,{"block":body_1},null).notexists(ctx._get(false, ["foo"]),ctx,{"block":body_2},null);}function body_1(chk,ctx){return chk.reference(ctx._get(false,["foo","bar"]),ctx,"h").write(" ").reference(ctx._get(false,["foo","baz"]),ctx,"h");}function body_2(chk,ctx){return chk.write("Goodbye cruel world");}return body_0;})();';
         compile('test.dust', 'test/mock/', 'test/mock/');
 
         // wait 0.5 seconds before reading the file

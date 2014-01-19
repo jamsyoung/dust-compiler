@@ -21,7 +21,8 @@ module.exports = function (grunt) {
             build: {
                 src: [
                     'Gruntfile.js',
-                    'test/**/*.js'
+                    'test/*.js',
+                    'test/mocha/*.js'
                 ],
                 options: {
                     errorsOnly: false,
