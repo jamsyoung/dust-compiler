@@ -20,7 +20,7 @@ describe('compile', function () {
                 data.should.contain('dust.register("test"');
                 done();
             });
-        }, 500);
+        }, 1000 * 0.5);
     });
 
     it('should compile a template with a source path, filename, and destination path provided', function (done) {
@@ -35,7 +35,7 @@ describe('compile', function () {
                 data.should.contain('dust.register("test"');
                 done();
             });
-        }, 500);
+        }, 1000 * 0.5);
     });
 
     it('should compile a template and default to NOT include the path in the registered name if options.includepath is not set', function (done) {
@@ -50,7 +50,7 @@ describe('compile', function () {
                 data.should.contain('dust.register("test"');
                 done();
             });
-        }, 500);
+        }, 1000 * 0.5);
     });
 
     it('should include the path as the registered dust template name if options.includepath is set', function (done) {
@@ -65,7 +65,7 @@ describe('compile', function () {
                 data.should.contain('dust.register("test/mock/test"');
                 done();
             });
-        }, 500);
+        }, 1000 * 0.5);
     });
 
     it('should support AMD syntax if the --amd flag is used', function (done) {
@@ -82,7 +82,7 @@ describe('compile', function () {
                 data.should.match(/\}\);$/);
                 done();
             });
-        }, 500);
+        }, 1000 * 0.5);
     });
 
     it('should not use log-notify if options.nonotify is set', function () {
@@ -93,7 +93,7 @@ describe('compile', function () {
     });
 
     it('should match the exact same output from dustc with includepath', function (done) {
-        var controlData = '(function(){dust.register("test/mock/test",body_0);function body_0(chk,ctx){return chk.exists(ctx._get(false, ["foo"]),ctx,{"block":body_1},null).notexists(ctx._get(false, ["foo"]),ctx,{"block":body_2},null);}function body_1(chk,ctx){return chk.reference(ctx._get(false,["foo","bar"]),ctx,"h").write(" ").reference(ctx._get(false,["foo","baz"]),ctx,"h");}function body_2(chk,ctx){return chk.write("Goodbye cruel world");}return body_0;})();';
+        var controlData = '(function(){dust.register("test/mock/test",body_0);function body_0(chk,ctx){return chk.exists(ctx.get(["foo"], false),ctx,{"block":body_1},null).notexists(ctx.get(["foo"], false),ctx,{"block":body_2},null);}function body_1(chk,ctx){return chk.reference(ctx.getPath(false, ["foo","bar"]),ctx,"h").write(" ").reference(ctx.getPath(false, ["foo","baz"]),ctx,"h");}function body_2(chk,ctx){return chk.write("Goodbye cruel world");}return body_0;})();';
         compile('test.dust', 'test/mock/', 'test/mock/', { includepath: true });
 
         // wait 0.5 seconds before reading the file
@@ -105,11 +105,11 @@ describe('compile', function () {
                 data.should.equal(controlData);
                 done();
             });
-        }, 500);
+        }, 1000 * 0.5);
     });
 
     it('should match the exact same output from dustc with no path', function (done) {
-        var controlData = '(function(){dust.register("test",body_0);function body_0(chk,ctx){return chk.exists(ctx._get(false, ["foo"]),ctx,{"block":body_1},null).notexists(ctx._get(false, ["foo"]),ctx,{"block":body_2},null);}function body_1(chk,ctx){return chk.reference(ctx._get(false,["foo","bar"]),ctx,"h").write(" ").reference(ctx._get(false,["foo","baz"]),ctx,"h");}function body_2(chk,ctx){return chk.write("Goodbye cruel world");}return body_0;})();';
+        var controlData = '(function(){dust.register("test",body_0);function body_0(chk,ctx){return chk.exists(ctx.get(["foo"], false),ctx,{"block":body_1},null).notexists(ctx.get(["foo"], false),ctx,{"block":body_2},null);}function body_1(chk,ctx){return chk.reference(ctx.getPath(false, ["foo","bar"]),ctx,"h").write(" ").reference(ctx.getPath(false, ["foo","baz"]),ctx,"h");}function body_2(chk,ctx){return chk.write("Goodbye cruel world");}return body_0;})();';
         compile('test.dust', 'test/mock/', 'test/mock/');
 
         // wait 0.5 seconds before reading the file
@@ -121,6 +121,6 @@ describe('compile', function () {
                 data.should.equal(controlData);
                 done();
             });
-        }, 500);
+        }, 1000 * 0.5);
     });
 });
