@@ -1,5 +1,17 @@
 # Change Log
 
+
+## 0.3.9
+- updated dependencies
+    - debug-0.8.1 => 1.0.2
+    - dustjs-linkedin-2.3.5 => 2.4.0
+    - grunt-0.4.4 => 0.4.5
+    - grunt-complexity-0.1.6 => 0.2.0
+    - grunt-mocha-test-0.10.2 => 0.11.0
+
+- fixed a defect that was causing logging to not work at all
+
+
 ## 0.3.0
 - adding --amd flag for AMD support
 

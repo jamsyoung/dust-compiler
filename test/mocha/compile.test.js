@@ -1,8 +1,11 @@
-/* global describe, it */
+/* jshint expr: true, mocha: true */
+/* global expect */
 'use strict';
 
-var fs = require('fs'),
-    compile = require('../../lib/compile.js');
+var
+    childProcess = require('child_process'),
+    compile = require('../../lib/compile.js'),
+    fs = require('fs');
 
 
 describe('compile', function () {
@@ -93,34 +96,40 @@ describe('compile', function () {
     });
 
     it('should match the exact same output from dustc with includepath', function (done) {
-        var controlData = '(function(){dust.register("test/mock/test",body_0);function body_0(chk,ctx){return chk.exists(ctx.get(["foo"], false),ctx,{"block":body_1},null).notexists(ctx.get(["foo"], false),ctx,{"block":body_2},null);}function body_1(chk,ctx){return chk.reference(ctx.getPath(false, ["foo","bar"]),ctx,"h").write(" ").reference(ctx.getPath(false, ["foo","baz"]),ctx,"h");}function body_2(chk,ctx){return chk.write("Goodbye cruel world");}return body_0;})();';
-        compile('test.dust', 'test/mock/', 'test/mock/', { includepath: true });
+        childProcess.exec('node_modules/.bin/dustc --name=test/mock/test test/mock/test.dust', function (error, stdout) {
+            expect(error).to.be['null'];
+            compile('test.dust', 'test/mock/', 'test/mock/', { includepath: true });
 
-        // wait 0.5 seconds before reading the file
-        setTimeout(function () {
-            fs.readFile('test/mock/test.js', 'utf-8', function (error, data) {
-                if (error) { console.log(error); }
+            // wait 0.5 seconds before reading the file
+            setTimeout(function () {
+                fs.readFile('test/mock/test.js', 'utf-8', function (error, data) {
+                    if (error) { console.log(error); }
 
-                data.should.be.a('string');
-                data.should.equal(controlData);
-                done();
-            });
-        }, 1000 * 0.5);
+                    expect(error).to.be['null'];
+                    expect(data).to.be.a('string');
+                    expect(data).to.equal(stdout);
+                    done();
+                });
+            }, 1000 * 0.5);
+        });
     });
 
     it('should match the exact same output from dustc with no path', function (done) {
-        var controlData = '(function(){dust.register("test",body_0);function body_0(chk,ctx){return chk.exists(ctx.get(["foo"], false),ctx,{"block":body_1},null).notexists(ctx.get(["foo"], false),ctx,{"block":body_2},null);}function body_1(chk,ctx){return chk.reference(ctx.getPath(false, ["foo","bar"]),ctx,"h").write(" ").reference(ctx.getPath(false, ["foo","baz"]),ctx,"h");}function body_2(chk,ctx){return chk.write("Goodbye cruel world");}return body_0;})();';
-        compile('test.dust', 'test/mock/', 'test/mock/');
+        childProcess.exec('node_modules/.bin/dustc --name=test test/mock/test.dust', function (error, stdout) {
+            expect(error).to.be['null'];
+            compile('test.dust', 'test/mock/', 'test/mock/');
 
-        // wait 0.5 seconds before reading the file
-        setTimeout(function () {
-            fs.readFile('test/mock/test.js', 'utf-8', function (error, data) {
-                if (error) { console.log(error); }
+            // wait 0.5 seconds before reading the file
+            setTimeout(function () {
+                fs.readFile('test/mock/test.js', 'utf-8', function (error, data) {
+                    if (error) { console.log(error); }
 
-                data.should.be.a('string');
-                data.should.equal(controlData);
-                done();
-            });
-        }, 1000 * 0.5);
+                    expect(error).to.be['null'];
+                    expect(data).to.be.a('string');
+                    expect(data).to.equal(stdout);
+                    done();
+                });
+            }, 1000 * 0.5);
+        });
     });
 });
